@@ -90,6 +90,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun translater() {
+        val animator = ObjectAnimator.ofFloat(star, View.TRANSLATION_X, 200f)
+        animator.start()
     }
 
     private fun scaler() {
