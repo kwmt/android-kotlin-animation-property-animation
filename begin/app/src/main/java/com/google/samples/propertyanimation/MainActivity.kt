@@ -112,6 +112,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun colorizer() {
         val animator = ObjectAnimator.ofArgb(star.parent, "backgroundColor", Color.BLACK, Color.RED)
+        animator.setDuration(500)
+        animator.repeatCount = 1
+        animator.repeatMode = ObjectAnimator.REVERSE
+        animator.disableViewDuringAnimation(colorizeButton)
         animator.start()
     }
 
