@@ -135,6 +135,14 @@ class MainActivity : AppCompatActivity() {
             FrameLayout.LayoutParams.WRAP_CONTENT,
             FrameLayout.LayoutParams.WRAP_CONTENT
         )
+
+        newStar.scaleX = Math.random().toFloat() * 1.5f + .1f
+        newStar.scaleY = newStar.scaleX
+        starW *= newStar.scaleX
+        starH *= newStar.scaleY
+
+        newStar.translationX = Math.random().toFloat() * containerW - starW / 2
+
         container.addView(newStar)
 
     }
