@@ -16,10 +16,7 @@
 
 package com.google.samples.propertyanimation
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.ObjectAnimator
-import android.animation.PropertyValuesHolder
+import android.animation.*
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -147,7 +144,6 @@ class MainActivity : AppCompatActivity() {
 
         container.addView(newStar)
 
-
         val mover = ObjectAnimator.ofFloat(newStar, View.TRANSLATION_Y, -starH, containerH + starH)
         mover.interpolator = AccelerateInterpolator(1f)
 
@@ -155,6 +151,16 @@ class MainActivity : AppCompatActivity() {
             ObjectAnimator.ofFloat(newStar, View.ROTATION, (Math.random() * 1080).toFloat())
         rotator.interpolator = LinearInterpolator()
 
+        val set = AnimatorSet()
+        set.playTogether(mover, rotator)
+        set.duration = (Math.random() * 1500 + 500).toLong()
+
+        set.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator?) {
+                container.removeView(newStar)
+            }
+        })
+        set.start()
     }
 
     private fun ObjectAnimator.disableViewDuringAnimation(view: View) {
